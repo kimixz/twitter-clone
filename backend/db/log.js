@@ -1,6 +1,5 @@
 const mongoose = require('mongoose')
 
-
 const logSchema = new mongoose.Schema(
   {
     user: {
@@ -13,13 +12,12 @@ const logSchema = new mongoose.Schema(
     },
     following: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: 'User'
+      ref: 'User',
     },
     tweet: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: 'Tweet'
-    }
-
+      ref: 'Tweet',
+    },
   },
   {
     collection: 'log',

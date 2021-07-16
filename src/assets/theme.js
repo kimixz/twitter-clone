@@ -50,19 +50,17 @@ const theme = createMuiTheme({
   palette: {
     primary: {
       main: '#1FA1F1',
-
     },
     secondary: {
       main: '#14202B',
     },
     white: {
-      main: '#fff'
+      main: '#fff',
     },
     lines: {
-      main: 'rgb(56,68,77)'
-    }
+      main: 'rgb(56,68,77)',
+    },
   },
-
 })
 
 // responsive theme

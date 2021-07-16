@@ -10,12 +10,10 @@ const tweetSchema = new mongoose.Schema(
     },
     message: {
       type: String,
-      //  required: [true, TWEET.MESSAGE_REQUIRED]
     },
     mediaType: {
       type: String,
       required: [true, TWEET.MESSAGETYPE_REQUIRED],
-      // validate: ["text", "media", "text/media"]
     },
     media: {
       type: String,
@@ -34,12 +32,12 @@ const tweetSchema = new mongoose.Schema(
     },
     isRetweeted: {
       type: Boolean,
-      default: false
+      default: false,
     },
     retweetedFrom: {
       type: mongoose.Schema.Types.ObjectId,
       ref: 'Tweet',
-    }
+    },
   },
   {
     collection: 'tweet',

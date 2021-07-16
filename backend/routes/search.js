@@ -21,7 +21,10 @@ router.post('/', async (req, res, next) => {
     if (req.body.search.charAt(0) === '#') {
       // serach in hashtags
       const searchHashtag = req.body.search.substring(1)
-      const hashtag = await Tweet.find({ hashtags: searchHashtag }).populate({ path: "sender", model: User })
+      const hashtag = await Tweet.find({ hashtags: searchHashtag }).populate({
+        path: 'sender',
+        model: User,
+      })
       console.log(hashtag)
       if (hashtag) {
         return res.send({ status: 'OK', hashtag })
@@ -30,16 +33,14 @@ router.post('/', async (req, res, next) => {
     }
     // search in tweets
 
-    const tweets = await Tweet.find({ "message": { $regex: `.*${req.body.search}.*` } }).populate({ path: "sender", model: User })
+    const tweets = await Tweet.find({
+      message: { $regex: `.*${req.body.search}.*` },
+    }).populate({ path: 'sender', model: User })
     console.log(tweets)
     if (tweets) {
       return res.send({ status: 'OK', tweets })
     }
     return res.send({ status: 'NO', message: 'This message is not found' })
-
-
-
-    // return res.send('error')
   } catch (err) {
     return next(err)
   }

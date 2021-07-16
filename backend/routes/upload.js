@@ -2,7 +2,6 @@ const express = require('express')
 const fs = require('fs')
 const { v4: uuidv4 } = require('uuid')
 
-
 const router = express.Router()
 
 router.post('/image', async (req, res, next) => {
@@ -51,12 +50,7 @@ router.post('/file', async (req, res, next) => {
 
 router.post('/video', async (req, res, next) => {
   try {
-
     const data = req.body.video
-    // const extension = data.substring(
-    //   'data:video/'.length,
-    //   data.indexOf(';base64,'),
-    // )
     const base64Data = data.substring(
       data.indexOf(';base64,') + ';base64,'.length,
     )
