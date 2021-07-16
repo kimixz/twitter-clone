@@ -63,6 +63,11 @@ api.getUser = ({ urlParams }) => request({
     Authorization: `Bearer ${localStorage.getItem('authToken')}`,
   },
 })
+api.getUserSearch = ({ urlParams }) => request({
+  method: 'get',
+  url: `/user/search/${urlParams.id}`,
+
+})
 
 api.getFollowUser = ({ urlParams }) => request({
   method: 'get',
@@ -180,6 +185,32 @@ api.getFeed = () => request({
     Authorization: `Bearer ${localStorage.getItem('authToken')}`,
   },
 })
+
+// Notifictaion
+api.getNotification = () => request({
+  method: 'get',
+  url: `/notification`,
+  headers: {
+    Authorization: `Bearer ${localStorage.getItem('authToken')}`,
+  },
+})
+api.getMyNotification = () => request({
+  method: 'get',
+  url: `/notification/me`,
+  headers: {
+    Authorization: `Bearer ${localStorage.getItem('authToken')}`,
+  },
+})
+
+// log
+api.getMyLog = () => request({
+  method: 'get',
+  url: `/log/me`,
+  headers: {
+    Authorization: `Bearer ${localStorage.getItem('authToken')}`,
+  },
+})
+
 
 
 export default api

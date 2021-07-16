@@ -4,13 +4,14 @@ import React, { useState } from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 import { Box, TextField, Button } from '@material-ui/core'
 
-import { useHistory, useLocation } from 'react-router-dom'
+import { useHistory } from 'react-router-dom'
 
 // utils
 import api from 'utils/api'
 
 // components
 import ResponseAlert from 'components/Common/ResponseAlert'
+import Tweet from 'components/Tweet/Tweet'
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -43,12 +44,18 @@ const useStyles = makeStyles(theme => ({
     textTransform: 'none',
     marginLeft: theme.spacing(3),
   },
+  tweetWrapper: {
+    width: '100%',
+    height: '100%',
+  },
 }))
 
 function Search() {
   const classes = useStyles()
   const history = useHistory()
+
   const [message, setMessage] = useState('')
+  const [tweets, setTweets] = useState([])
   const [errorMessage, setErrorMessage] = useState('')
 
   const handleSearch = () => {
@@ -60,9 +67,11 @@ function Search() {
         if (res.data.status === 'OK') {
           if (res.data.user) {
             history.push(`/profile/${res.data.user._id}`)
-          }
-          if (res.data.tweets) {
-            console.log(res.data.tweets)
+          } else if (res.data.hashtag) {
+            console.log(res.data.hashtag)
+            setTweets(res.data.hashtag)
+          } else {
+            setTweets(res.data.tweets)
           }
         } else {
           setErrorMessage(res.data.message)
@@ -101,6 +110,25 @@ function Search() {
             Search
           </Button>
         </Box>
+        <Box className={classes.tweetWrapper}>
+          {tweets.map(tweet => (
+            <Tweet
+              key={tweet._id}
+              id={tweet._id}
+              message={tweet.message}
+              media={tweet.media}
+              mediaType={tweet.mediaType}
+              likes={tweet.likes}
+              reteweets={tweet.reteweets}
+              hashtags={tweet.hashtags}
+              user={tweet.sender}
+              isLiked={tweet.isLiked}
+              isRetweeted={tweet.isRetweeted}
+              dontShowControls
+            />
+          ))}
+        </Box>
+
         <ResponseAlert type="error" text={errorMessage} />
       </Box>
     </>

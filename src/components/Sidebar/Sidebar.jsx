@@ -14,6 +14,7 @@ import PermIdentityIcon from '@material-ui/icons/PermIdentity'
 import NotificationsIcon from '@material-ui/icons/Notifications'
 import SearchIcon from '@material-ui/icons/Search'
 import ExitToAppIcon from '@material-ui/icons/ExitToApp'
+import StorageIcon from '@material-ui/icons/Storage'
 
 // components
 import SidebarItem from 'components/Sidebar/SidebarItem'
@@ -96,6 +97,14 @@ function Sidebar({ setAuthToken }) {
             changeRoute('/profile')
           }}
           selected={location.pathname === '/profile'}
+        />
+        <SidebarItem
+          label="Logs"
+          icon={<StorageIcon />}
+          onClick={() => {
+            changeRoute('/log')
+          }}
+          selected={location.pathname === '/log'}
         />
         <SidebarItem
           label="Search"

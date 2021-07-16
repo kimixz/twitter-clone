@@ -16,7 +16,7 @@ import {
 import TwitterIcon from '@material-ui/icons/Twitter'
 
 // react router
-import { Link } from 'react-router-dom'
+import { Link, useHistory } from 'react-router-dom'
 
 // utils
 import api from 'utils/api'
@@ -78,11 +78,19 @@ const useStyles = makeStyles(theme => ({
       color: '#fff',
     },
   },
+  searchWrapper: {
+    width: '100%',
+    paddingTop: theme.spacing(4),
+    display: 'flex',
+    justifyContent: 'flex-end',
+    alignItems: 'center',
+  },
 }))
 
 function Login({ setAuthToken }) {
   const classes = useStyles()
 
+  const history = useHistory()
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [serverResponseType, setServerResponseType] = useState(null)
@@ -116,6 +124,17 @@ function Login({ setAuthToken }) {
         <Box component="section">
           <Box component="section">
             <Container maxWidth="lg">
+              <Box className={classes.searchWrapper}>
+                <Button
+                  type="submit"
+                  variant="contained"
+                  color="primary"
+                  onClick={() => history.push('searchbar')}
+                >
+                  Search
+                </Button>
+              </Box>
+
               <Box className={classes.loginOuterWrapper}>
                 <div className={classes.loginInnerWrapper}>
                   <Icon fontSize="large" className={classes.icon}>

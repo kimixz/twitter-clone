@@ -5,7 +5,6 @@ import { makeStyles } from '@material-ui/core/styles'
 import {
   Box,
   Container,
-  Paper,
   Typography,
   TextField,
   Button,

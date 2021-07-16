@@ -5,16 +5,11 @@ import { makeStyles } from '@material-ui/core/styles'
 import {
   Box,
   Container,
-  Paper,
   Typography,
   TextField,
   Button,
-  Icon,
   Avatar,
 } from '@material-ui/core'
-
-// @material-ui/icons
-import TwitterIcon from '@material-ui/icons/Twitter'
 
 // react router
 import { useHistory } from 'react-router-dom'

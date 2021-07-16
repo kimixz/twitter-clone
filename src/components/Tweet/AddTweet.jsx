@@ -4,14 +4,7 @@ import React, { useState } from 'react'
 
 // @material-ui/core
 import { makeStyles } from '@material-ui/core/styles'
-import {
-  Box,
-  Grid,
-  TextField,
-  Input,
-  Button,
-  IconButton,
-} from '@material-ui/core'
+import { Box, TextField, Button, IconButton } from '@material-ui/core'
 
 // @material-ui/icons
 import ImageIcon from '@material-ui/icons/Image'
@@ -67,7 +60,6 @@ function AddTweet() {
   const [message, setMessage] = useState(null)
   const [media, setMedia] = useState(null)
   const [mediaType, setMediaType] = useState(null)
-  const [serverError, setServerError] = useState('')
 
   const postUploadImage = b64Image => {
     api
@@ -78,7 +70,7 @@ function AddTweet() {
       })
       .catch(err => {
         if (err.response && err.response.data) {
-          setServerError(err.response.data.message)
+          console.log(err.response.data.message)
         }
       })
   }
@@ -104,7 +96,7 @@ function AddTweet() {
       })
       .catch(err => {
         if (err.response && err.response.data) {
-          setServerError(err.response.data.message)
+          console.log(err.response.data.message)
         }
       })
   }

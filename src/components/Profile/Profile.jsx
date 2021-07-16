@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react'
 
 // @material-ui/core
 import { makeStyles } from '@material-ui/core/styles'
-import { Box, Grid, Avatar, Typography, Button } from '@material-ui/core'
+import { Box, Avatar, Typography, Button } from '@material-ui/core'
 
 import { useHistory, useParams } from 'react-router-dom'
 
@@ -51,11 +51,23 @@ const useStyles = makeStyles(theme => ({
 function Profile() {
   const classes = useStyles()
   const [user, setUser] = useState(null)
+  const [myUser, setMyUser] = useState(null)
   const [tweets, setTweets] = useState([])
   const [isMyProfile, setIsMyProfile] = useState(false)
   const [isFollowed, setIsFollowed] = useState(false)
   const history = useHistory()
   const { id } = useParams()
+
+  useEffect(() => {
+    api
+      .getUserInfo()
+      .then(res => {
+        setMyUser(res.data)
+      })
+      .catch(err => {
+        console.log(err)
+      })
+  }, [])
 
   useEffect(() => {
     if (!id) {
@@ -180,7 +192,7 @@ function Profile() {
                 user={user}
                 isLiked={tweet.isLiked}
                 isRetweeted={tweet.isRetweeted}
-                canDeleteTweet={tweet.sender._id === user._id}
+                canDeleteTweet={tweet.sender._id === myUser?._id}
               />
             ))}
           </Box>

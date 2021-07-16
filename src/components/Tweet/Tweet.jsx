@@ -1,6 +1,6 @@
 /* eslint-disable no-nested-ternary */
 /* eslint-disable jsx-a11y/media-has-caption */
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 
 // @material-ui/core
@@ -98,20 +98,15 @@ function Tweet({
   media,
   mediaType,
   likes,
-  retweets,
-  hashtags,
   user,
   isLiked,
   isRetweeted,
   canDeleteTweet,
+  dontShowControls,
 }) {
   const classes = useStyles()
   const [likers, setLikers] = useState([])
   const [open, setOpen] = useState(false)
-
-  const handleOpen = () => {
-    setOpen(true)
-  }
 
   const handleClose = () => {
     setOpen(false)
@@ -241,36 +236,38 @@ function Tweet({
             {message}
           </Typography>
         </CardContent>
-        <CardActions disableSpacing>
-          <IconButton
-            aria-label="like"
-            className={classes.iconColor}
-            onClick={handleClick}
-          >
-            {isLiked ? <FavoriteIcon /> : <FavoriteBorderIcon />}
-          </IconButton>
-          <Box className={classes.textColor} onClick={handleClickGetLikers}>
-            {likes.length}
-          </Box>
-          <IconButton
-            aria-label="share"
-            className={classes.iconColor}
-            onClick={handleRetweet}
-          >
-            <ShareIcon />
-          </IconButton>
-
-          {canDeleteTweet && (
+        {!dontShowControls && (
+          <CardActions disableSpacing>
+            <IconButton
+              aria-label="like"
+              className={classes.iconColor}
+              onClick={handleClick}
+            >
+              {isLiked ? <FavoriteIcon /> : <FavoriteBorderIcon />}
+            </IconButton>
+            <Box className={classes.textColor} onClick={handleClickGetLikers}>
+              {likes.length}
+            </Box>
             <IconButton
               aria-label="share"
               className={classes.iconColor}
-              onClick={handleDelete}
+              onClick={handleRetweet}
             >
-              <DeleteIcon />
+              <ShareIcon />
             </IconButton>
-          )}
-          {/* <Box className={classes.textColor}>{retweets.length}</Box> */}
-        </CardActions>
+
+            {canDeleteTweet && (
+              <IconButton
+                aria-label="share"
+                className={classes.iconColor}
+                onClick={handleDelete}
+              >
+                <DeleteIcon />
+              </IconButton>
+            )}
+            {/* <Box className={classes.textColor}>{retweets.length}</Box> */}
+          </CardActions>
+        )}
       </Card>
       <Modal
         open={open}
@@ -300,12 +297,11 @@ Tweet.defaultProps = {
   media: '',
   mediaType: '',
   likes: [],
-  retweets: [],
-  hashtags: [],
   user: null,
   isLiked: false,
   isRetweeted: false,
   canDeleteTweet: false,
+  dontShowControls: false,
 }
 
 Tweet.propTypes = {
@@ -314,12 +310,11 @@ Tweet.propTypes = {
   media: PropTypes.string,
   mediaType: PropTypes.string,
   likes: PropTypes.arrayOf(PropTypes.shape()),
-  retweets: PropTypes.arrayOf(PropTypes.shape()),
-  hashtags: PropTypes.arrayOf(PropTypes.shape()),
   user: PropTypes.shape(),
   isLiked: PropTypes.bool,
   isRetweeted: PropTypes.bool,
   canDeleteTweet: PropTypes.bool,
+  dontShowControls: PropTypes.bool,
 }
 
 export default Tweet

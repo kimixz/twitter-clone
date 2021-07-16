@@ -15,7 +15,8 @@
     "react/jsx-props-no-spreading": "off",
     "react/no-array-index-key": "off",
     "no-unused-vars":"warn",
-    "arrow-body-style":"warn"
+    "arrow-body-style":"warn",
+    "no-console":"off"
   },
   "globals": {
     "window": true,

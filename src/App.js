@@ -16,6 +16,8 @@ import HomeLayout from 'layouts/HomeLayout'
 // components
 import Login from 'components/Login/Login'
 import Signup from 'components/Signup/Signup'
+import SearchBar from 'components/Search/SearchBar'
+import ProfileStandAlone from 'components/Profile/ProfileStandAlone'
 
 
 function App() {
@@ -28,6 +30,11 @@ function App() {
 
           <Route exact path="/signup">
             <Signup />
+          </Route>
+          <Route exact path="/profilesearch/:id?" component={ProfileStandAlone} />
+
+          <Route exact path="/searchbar">
+            <SearchBar />
           </Route>
 
           <Route exact path="/">

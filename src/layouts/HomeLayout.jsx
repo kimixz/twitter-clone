@@ -4,8 +4,6 @@ import PropTypes from 'prop-types'
 // @material-ui/core
 import { makeStyles, useTheme } from '@material-ui/core/styles'
 import {
-  Box,
-  Grid,
   CssBaseline,
   AppBar,
   Toolbar,
@@ -18,7 +16,7 @@ import {
 import MenuIcon from '@material-ui/icons/Menu'
 
 // react router
-import { useLocation, Switch, Route, Redirect } from 'react-router-dom'
+import { useLocation, Switch, Route } from 'react-router-dom'
 
 // components
 import Home from 'components/Home/Home'
@@ -26,6 +24,8 @@ import Sidebar from 'components/Sidebar/Sidebar'
 import Profile from 'components/Profile/Profile'
 import ProfileEdit from 'components/Profile/ProfileEdit'
 import Search from 'components/Search/Search'
+import Notification from 'components/Notification/Notification'
+import Log from 'components/Log/Log'
 
 const drawerWidth = 240
 
@@ -72,7 +72,7 @@ const useStyles = makeStyles(theme => ({
   },
 }))
 
-function HomeLayout({ authToken, setAuthToken }) {
+function HomeLayout({ setAuthToken }) {
   const { pathname } = useLocation()
 
   const [mobileOpen, setMobileOpen] = React.useState(false)
@@ -156,6 +156,8 @@ function HomeLayout({ authToken, setAuthToken }) {
             </Route> */}
             <Route exact path="/profile/:id?" component={Profile} />
             <Route exact path="/profileedit" component={ProfileEdit} />
+            <Route exact path="/notification" component={Notification} />
+            <Route exact path="/log" component={Log} />
 
             <Route exact path="/search">
               <Search />
@@ -167,12 +169,7 @@ function HomeLayout({ authToken, setAuthToken }) {
   )
 }
 
-HomeLayout.defaultProps = {
-  authToken: '',
-}
-
 HomeLayout.propTypes = {
-  authToken: PropTypes.string,
   setAuthToken: PropTypes.func.isRequired,
 }
 
