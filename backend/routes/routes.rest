@@ -1,0 +1,155 @@
+@host = http://localhost:5000
+@contentType = application/json
+
+
+# user #
+###
+GET {{host}}/user HTTP/1.1
+Authorization: Bearer {{userToken}}
+
+###
+GET {{host}}/user/feed HTTP/1.1
+Authorization: Bearer {{userToken}}
+
+POST {{host}}/user/editprofile HTTP/1.1
+Authorization: Bearer {{userToken}}
+
+{
+  "username": "username",
+  "profilePicture": "urlImage"
+}
+
+###
+GET {{host}}/user/me HTTP/1.1
+Authorization: Bearer {{userToken}}
+
+###
+POST {{host}}/user/login HTTP/1.1
+Content-Type: {{contentType}}
+
+{
+  "email": "user",
+  "password": "123"
+}
+
+###
+GET {{host}}/user/search/:id HTTP/1.1
+
+###
+GET {{host}}/user/:id HTTP/1.1
+Authorization: Bearer {{userToken}}
+
+###
+POST {{host}}/user/signup HTTP/1.1
+Content-Type: {{contentType}}
+
+{
+  "username":"username",
+  "email": "user",
+  "password": "123"
+}
+
+###
+GET {{host}}/user/follow/:id HTTP/1.1
+Authorization: Bearer {{userToken}}
+
+###
+GET {{host}}/user/unfollow/:id HTTP/1.1
+Authorization: Bearer {{userToken}}
+
+
+
+# tweet #
+###
+GET {{host}}/tweet HTTP/1.1
+Authorization: Bearer {{userToken}}
+
+###
+GET {{host}}/tweet/likes/:id HTTP/1.1
+Authorization: Bearer {{userToken}}
+
+###
+GET {{host}}/tweet/like/:id HTTP/1.1
+Authorization: Bearer {{userToken}}
+
+###
+GET {{host}}/tweet/unlike/:id HTTP/1.1
+Authorization: Bearer {{userToken}}
+
+###
+GET {{host}}/retweet/like/:id HTTP/1.1
+Authorization: Bearer {{userToken}}
+
+
+###
+GET {{host}}/tweet/:id HTTP/1.1
+Authorization: Bearer {{userToken}}
+
+
+###
+POST {{host}}/tweet HTTP/1.1
+Content-Type: {{contentType}}
+
+{
+  "sender":"8778",
+  "message": "salam",
+  "mediaType":"text",
+  "media":null,
+  "hashtags":[]
+}
+
+###
+DELETE {{host}}/tweet/:id HTTP/1.1
+Content-Type: {{contentType}}
+
+# upload #
+###
+POST {{host}}/image HTTP/1.1
+Authorization: Bearer {{userToken}}
+
+{
+  "image": {{image}}
+}
+
+###
+POST {{host}}/video HTTP/1.1
+Authorization: Bearer {{userToken}}
+
+{
+  "video": {{video}}
+}
+
+###
+POST {{host}}/file HTTP/1.1
+Authorization: Bearer {{userToken}}
+
+{
+  "file": {{file}}
+}
+
+# search #
+###
+POST {{host}}/search HTTP/1.1
+
+{
+  "search":"salam"
+}
+
+
+# log #
+###
+GET {{host}}/log HTTP/1.1
+Authorization: Bearer {{userToken}}
+
+###
+GET {{host}}/log/me HTTP/1.1
+Authorization: Bearer {{userToken}}
+
+# notification #
+###
+GET {{host}}/notification HTTP/1.1
+Authorization: Bearer {{userToken}}
+
+###
+GET {{host}}/notification/me HTTP/1.1
+Authorization: Bearer {{userToken}}

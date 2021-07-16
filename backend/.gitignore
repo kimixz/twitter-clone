@@ -1,0 +1,16 @@
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
+# environment
+.env
+
+# dependencies
+/node_modules
+
+# images
+/public/images
+
+# videos
+/public/videos
+
+# files
+/public/files
